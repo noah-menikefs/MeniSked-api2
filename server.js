@@ -43,6 +43,8 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+app.get('/', (req,res) => {res.send('it is working')})
+
 //Checks if a user's login info is correct
 app.post('/login', (req, res) => {login.handleLogin(req,res,db,bcrypt)})
 
