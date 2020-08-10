@@ -19,6 +19,8 @@ const request = require('./controllers/request');
 const published = require('./controllers/published');
 const departments = require('./controllers/departments');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 const db = knex({
 	client: 'pg',
   	connection: {
@@ -40,8 +42,6 @@ var transporter = nodemailer.createTransport({
     pass: 'PDM"jxRv4C*aAmAB'
   }
 });
-
-app.get('/', (req,res) => {res.send('it is working')})
 
 //Checks if a user's login info is correct
 app.post('/login', (req, res) => {login.handleLogin(req,res,db,bcrypt)})

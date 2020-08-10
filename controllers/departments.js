@@ -4,8 +4,7 @@ const getDepts = (req,res,db) => {
 		.then(depts => {
 			res.json(depts);
 		})
-		.catch(err => res.status(400).json(err))
-		//.catch(err => res.status(400).json('unable to get departments'))
+		.catch(err => res.status(400).json('unable to get departments'))
 }
 
 module.exports = {
