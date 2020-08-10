@@ -22,10 +22,8 @@ const departments = require('./controllers/departments');
 const db = knex({
 	client: 'pg',
   	connection: {
-    	host : 'postgresql-transparent-21085',
-    	user : 'noah.menikefs',
-    	password : '',
-    	database : 'meniSked'
+    	host : process.env.DATABASE_URL,
+    	ssl: true
     }
 });
 
