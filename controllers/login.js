@@ -37,6 +37,7 @@ const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
 				.update('hash', hash)
 				.returning('id','email')
 				.then(user => {
+					console.log(user);
 					res.json(user[0]);
 					var mailOptions = {
 			  			from: 'menisked@gmail.com',
