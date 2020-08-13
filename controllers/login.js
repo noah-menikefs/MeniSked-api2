@@ -31,6 +31,7 @@ const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
 		.from('users')
 		.where('email', email)
 		.then(user => {
+			console.log('name')
 			name = user[0].firstname
 			db('login')
 				.where('email', email)
