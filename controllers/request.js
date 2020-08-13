@@ -16,7 +16,7 @@ const addRequest = (req,res,db,transporter) => {
 			//MUST BE FIXED WHEN ADMIN IS CHANGED OR NEW DEPTS ARE INTRODUCED
 			var mailOptions = {
 			  	from: 'menisked@gmail.com',
-			  	to: 'noahmeni27@gmail.com',
+			  	to: 'pnm@sympatico.ca',
 			  	subject: 'New Work Request',
 			 	text: 'Hey Peter'+',\n\nA user has made a new work request. Please navigate to the messages section of MeniSked to respond. It will be located at the top of your list of pending requests.\n\nThank you,\nThe MeniSked Team.'
 			};
