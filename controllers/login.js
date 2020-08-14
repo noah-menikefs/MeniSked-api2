@@ -37,7 +37,6 @@ const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
 				.update('hash', hash)
 				.returning(['id','email'])
 				.then(user => {
-					console.log(user[0]);
 					res.json(user[0]);
 					console.log(email, name);
 					var mailOptions = {
@@ -49,9 +48,11 @@ const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
 
 					transporter.sendMail(mailOptions, function(error, info){
 		  				if (error) {
+		  					console.log(error);
 		    				res.json(error);
 		  				} 
 		  				if (info){
+		  					console.log(info);
 		  					res.json(info.response);
 		  				}
 					});
