@@ -19,8 +19,6 @@ const request = require('./controllers/request');
 const published = require('./controllers/published');
 const departments = require('./controllers/departments');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-
 const db = knex({
 	client: 'pg',
   	connection: {
