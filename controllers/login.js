@@ -25,21 +25,21 @@ const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
 	const password = genPass(16, false);
 	const salt = bcrypt.genSaltSync(10);
 	const hash = bcrypt.hashSync(password, salt);
-	let name = ''
+	let name = '';
 
 	db.select('*')
 		.from('users')
 		.where('email', email)
 		.then(user => {
 			name = user[0].firstname
-			console.log(name);
 			db('login')
 				.where('email', email)
 				.update('hash', hash)
-				.returning('id','email')
+				.returning(['id','email'])
 				.then(user => {
-					console.log(user);
+					console.log(user[0]);
 					res.json(user[0]);
+					console.log(email, name);
 					var mailOptions = {
 			  			from: 'menisked@gmail.com',
 			  			to: email,
