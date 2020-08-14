@@ -17,7 +17,7 @@ const handleLogin = (req, res, db, bcrypt) => {
 				res.status(400).json('wrong credentials')
 			}
 		})
-	.catch(err => res.status(400).json('wrong credentials'))
+	.catch(err => res.status(400).json(err))
 }
 
 const forgotPassword = (req, res, db, bcrypt, genPass,transporter) => {
