@@ -38,8 +38,8 @@ app.use(cors())
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'menisked@gmail.com',
-    pass: 'aEvfb)bNe+7>$.Eq'
+    user: process.env.NODEMAILER_USER,
+    pass: process.env.NODEMAILER_PASS
   }
 });
 

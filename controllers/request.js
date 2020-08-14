@@ -15,10 +15,10 @@ const addRequest = (req,res,db,transporter) => {
 			res.json(message[0]);
 			//MUST BE FIXED WHEN ADMIN IS CHANGED OR NEW DEPTS ARE INTRODUCED
 			var mailOptions = {
-			  	from: 'menisked@gmail.com',
-			  	to: 'pnm@sympatico.ca',
+			  	from: process.env.NODEMAILER_USER,
+			  	to: process.env.NODEMAILER_ADMIN,
 			  	subject: 'New Work Request',
-			 	text: 'Hey Peter'+',\n\nA user has made a new work request. Please navigate to the messages section of MeniSked to respond. It will be located at the top of your list of pending requests.\n\nThank you,\nThe MeniSked Team.'
+			 	text: 'Hey '+process.env.ADMIN_NAME+',\n\nA user has made a new work request. Please navigate to the messages section of MeniSked to respond. It will be located at the top of your list of pending requests.\n\nThank you,\nThe MeniSked Team.'
 			};
 
 			transporter.sendMail(mailOptions, function(error, info){

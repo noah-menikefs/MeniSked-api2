@@ -8,7 +8,7 @@ const addUser = (req, res, db, genPass, bcrypt,transporter) => {
 	let colours = '';
 
 	var mailOptions = {
-	  	from: 'menisked@gmail.com',
+	  	from: process.env.NODEMAILER_USER,
 	  	to: email,
 	  	subject: 'Welcome to MeniSked!',
 	 	text: 'Hey '+firstname+',\n\nYour administrator has set up your MeniSked account and you have been given a temporary password: '+password+'. Please login using this password and immediately navigate to the account page. Here you will be able to change it to something easier to remember.\n\nThank you,\nThe MeniSked Team.'
