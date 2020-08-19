@@ -58,9 +58,21 @@ const messageResponse = (req,res,db,transporter) => {
 		.catch(err => res.status(400).json('unable to respond'))
 }
 
+const deleteMessage = (req,res,db) => {
+	const {id} = req.body;
+	db('messages')
+		.returning('*')
+		.where('id', '=', id)
+		.del()
+		.then(messages => {
+			res.json(messages[0])
+		})
+		.catch(err => res.status(400).json('unable to delete'))
+}
 
 module.exports = {
 	getAllMessages,
 	getEmployeeMessages,
-	messageResponse
+	messageResponse,
+	deleteMessage
 }

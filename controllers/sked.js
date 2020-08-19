@@ -23,6 +23,31 @@ const getNotes = (req, res, db) => {
 		.catch(err => res.status(400).json('unable to get notes'))
 }
 
+const editNote = (req, res, db) => {
+	const {id, msg} = req.body;
+	db('notes')
+		.where('id', '=', id)
+		.update({msg: msg})
+		.returning('*')
+		.then(notes => {
+			res.json(notes[0]);
+		})
+		.catch(err => res.status(404).json('unable to edit'))
+}
+
+const deleteNote = (req, res, db) => {
+	const {id} = req.body;
+
+	db('notes')
+		.returning('*')
+		.where('id', '=', id)
+		.del()
+		.then(note => {
+			res.json(note[0])
+		})
+		.catch(err => res.status(400).json('unable to delete'))
+}
+
 const getDocs = (req, res, db) => {
 	db.select('*')
 		.from('users')
@@ -126,5 +151,7 @@ module.exports = {
 	getDocs,
 	getEntries,
 	assignEntry,
-	deleteSkedCall
+	deleteSkedCall,
+	editNote,
+	deleteNote
 }

@@ -112,6 +112,12 @@ app.post('/sked/notes', (req,res) => {sked.addNote(req,res,db)})
 //Getting all notes 
 app.get('/sked/allNotes', (req,res) => {sked.getNotes(req,res,db)})
 
+//Edit a note
+app.put('/sked/editNote', (req,res) => {sked.editNote(req,res,db)})
+
+//Delete a note
+app.delete('/sked/deleteNote' (req,res) => {sked.deleteNote(req,res,db)})
+
 //Get active doctors
 app.get('/sked/docs', (req,res) => {sked.getDocs(req,res,db)})
 
@@ -147,6 +153,9 @@ app.get('/emessages/:id', (req,res) => {messages.getEmployeeMessages(req,res,db)
 
 //Admin responding to a pending request
 app.put('/amessages', (req,res) => {messages.messageResponse(req,res,db,transporter)})
+
+//Delete a message
+app.delete('/messages', (req,res) => {messages.deleteMessage(req,res,db)})
 
 //Employee making a request
 app.post('/request', (req,res) => {request.addRequest(req,res,db,transporter)})
