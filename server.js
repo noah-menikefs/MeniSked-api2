@@ -116,7 +116,7 @@ app.get('/sked/allNotes', (req,res) => {sked.getNotes(req,res,db)})
 app.put('/sked/editNote', (req,res) => {sked.editNote(req,res,db)})
 
 //Delete a note
-app.delete('/sked/deleteNote' (req,res) => {sked.deleteNote(req,res,db)})
+app.delete('/sked/deleteNote', (req,res) => {sked.deleteNote(req,res,db)})
 
 //Get active doctors
 app.get('/sked/docs', (req,res) => {sked.getDocs(req,res,db)})
