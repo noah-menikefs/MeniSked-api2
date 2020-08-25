@@ -59,15 +59,30 @@ const messageResponse = (req,res,db,transporter) => {
 }
 
 const deleteMessage = (req,res,db) => {
-	const {id} = req.body;
-	db('messages')
-		.returning('*')
-		.where('id', '=', id)
-		.del()
-		.then(messages => {
-			res.json(messages[0])
-		})
-		.catch(err => res.status(400).json('unable to delete'))
+	const {id, user, deleted} = req.body;
+	
+	if (deleted !== 'N'){
+		db('messages')
+			.returning('*')
+			.where('id', '=', id)
+			.del()
+			.then(messages => {
+				res.json(messages[0])
+			})
+			.catch(err => res.status(400).json('unable to delete'))
+	}
+	else{
+		db('messages')
+			.where('id', '=', id)
+			.update({deleted: user})
+			.returning('*')
+			.then(messages => {
+				res.json(messages[0]);
+			})
+			.catch(err => res.status(404).json('unable to delete'))
+	}
+
+
 }
 
 module.exports = {
