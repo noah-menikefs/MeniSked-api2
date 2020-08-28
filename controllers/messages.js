@@ -83,7 +83,7 @@ const deleteMessage = (req,res,db) => {
 	}
 }
 
-const maybe = () => {
+const maybe = (req,res,db,transporter) => {
 	const {id, msg2, stamp2} = req.body;
 	db('messages')
 		.where('id','=', id)
