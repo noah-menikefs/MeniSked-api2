@@ -154,6 +154,9 @@ app.get('/emessages/:id', (req,res) => {messages.getEmployeeMessages(req,res,db)
 //Admin responding to a pending request
 app.put('/amessages', (req,res) => {messages.messageResponse(req,res,db,transporter)})
 
+//Admin 'maybe-ing' a request
+app.put('/messages', (req,res) => {messages.maybe(req,res,db,transporter)})
+
 //Delete a message
 app.delete('/messages', (req,res) => {messages.deleteMessage(req,res,db)})
 

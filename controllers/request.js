@@ -10,7 +10,11 @@ const addRequest = (req,res,db,transporter) => {
 			stamp: stamp,
 			status: 'pending',
 			msg: '',
-			deleted: 'N'
+			deleted: 'N',
+			msg2: '',
+			stamp2: '',
+			maybe: false
+
 		})
 		.then(message => {
 			res.json(message[0]);

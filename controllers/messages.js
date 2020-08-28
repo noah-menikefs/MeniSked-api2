@@ -81,7 +81,46 @@ const deleteMessage = (req,res,db) => {
 			})
 			.catch(err => res.status(404).json('unable to delete'))
 	}
+}
 
+const maybe = () => {
+	const {id, msg2, stamp2} = req.body;
+	db('messages')
+		.where('id','=', id)
+		.update({
+			maybe: true,
+			msg2: msg2,
+			stamp2: stamp2
+		})
+		.returning('*')
+		.then(message => {
+			res.json(message[0])
+			const docid =  message[0].docid;
+			db.select('*').from('users').where('id', '=', docid)
+				.then(user => {
+					if (user.length > 0){
+						var mailOptions = {
+			  				from: process.env.NODEMAILER_USER,
+			  				to: user[0].email,
+			  				subject: 'Your Administator Has Responded to Your Request',
+			 	 			text: "Hey "+user[0].firstname+",\n\nYour administator has responded to your request with a 'maybe'. To view their response/reasoning please navigate to the messages section of MeniSked and click the request at the top of your list.\n\nThank you,\nThe MeniSked Team."
+						};
+						transporter.sendMail(mailOptions, function(error, info){
+		  					if (error) {
+		    					res.json(error);
+			  				} 
+			  				if (info){
+			  					res.json(info.response);
+			  				}
+						});
+					}
+					else{
+						res.status(400).json('Not found')
+					}
+				})
+				.catch(err => res.status(400).json('unable to access user'))
+		})
+		.catch(err => res.status(400).json('unable to respond'))
 
 }
 
