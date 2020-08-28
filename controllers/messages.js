@@ -128,5 +128,6 @@ module.exports = {
 	getAllMessages,
 	getEmployeeMessages,
 	messageResponse,
-	deleteMessage
+	deleteMessage,
+	maybe
 }
